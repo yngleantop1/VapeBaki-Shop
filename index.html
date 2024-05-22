@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.animated-text-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    animation: slideIn 2s ease-in-out;
+}
+
+.animated-text {
+    font-size: 24px;
+    color: black;
+    margin: 20px 0;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.container {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 100px; /* Adjust if needed */
+}
+
+.captcha-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+#captchaCanvas {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(100% - 24px);
+    margin-bottom: 10px;
+}
+
+#captchaResult {
+    font-size: 18px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.captcha-box, #captchaInput, #submitCaptcha {
+    animation: fadeIn 1s ease-in;
+}
+
+.background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+
+</style>
+<body>
+    <div class="animated-text-container">
+        <div class="animated-text">Witamy na naszej stronie! 🔥VapeBaki Shop🔥</div>
+    </div>
+    <div class="container">
+        <h1>Potwierdź że jesteś człowiekiem</h1>
+        <div class="captcha-box">
+            <canvas id="captchaCanvas" width="200" height="50"></canvas>
+            <button id="refreshCaptcha">Odśwież</button>
+        </div>
+        <input type="text" id="captchaInput" placeholder="Wpisz tekst z obrazka">
+        <button id="submitCaptcha">Sprawdź</button>
+        <p id="captchaResult"></p>
+    </div>
+    
+    <div class="background-image"></div>
+
+    <script src="register.js"></script>
+
+    <script>
+        setInterval(function() {
+          var titles = ["Captcha!🌖 ", "Captcha!🌗", "Captcha!🌘"];
+          var randomIndex = Math.floor(Math.random() * titles.length);
+          document.title = titles[randomIndex]; 
+        }, 1); 
+      </script>
+
+</body>
+</html>
